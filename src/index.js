@@ -14,6 +14,10 @@ app.get('/', (req, res) => {
       </head>
       <body>
         ${content}
+        <script>
+          document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+          ':35728/livereload.js?snipver=1"></' + 'script>')
+        </script>
       </body>
     </html>
   `);
