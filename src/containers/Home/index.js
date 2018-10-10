@@ -4,8 +4,8 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <div>This is liuyao!</div>
-        <button onClick={() => {alert('say hi!')}}>click me</button>
+        <div>This is Test!</div>
+        <button onClick={() => {alert('say test!')}}>click me</button>
       </div>
     );
   }
