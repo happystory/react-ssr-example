@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import Header from '../../components/Header';
 
 class Home extends Component {
@@ -6,10 +8,16 @@ class Home extends Component {
     return (
       <div>
         <Header />
-        Home
+        Hello, { this.props.name }
       </div>
     );
   }
 }
 
-export default Home;
+const mapStateToProps = state => {
+  return {
+    name: state.name
+  }
+};
+
+export default connect(mapStateToProps, null)(Home);
