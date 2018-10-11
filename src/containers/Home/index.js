@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import Header from '../../components/Header';
 
 class Home extends Component {
   render() {
     return (
       <div>
-        <div>This is 555!</div>
-        <button onClick={() => {alert('say test!')}}>click me</button>
+        <Header />
+        Home
       </div>
     );
   }
