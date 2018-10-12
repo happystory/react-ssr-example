@@ -22,7 +22,7 @@ export const render = (req) => {
   return `
     <html>
       <head>
-        <title>ssr</title>
+        <title>react ssr</title>
       </head>
       <body>
         <div id="root">${content}</div>

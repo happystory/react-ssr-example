@@ -1,11 +1,12 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
+import { reducer as homeReducer } from '../containers/Home/store';
+
+const reducer = combineReducers({
+  home: homeReducer
+});
 
 const composeEnhancers = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const reducer = (state={name: 'liuyao'}, action) => {
-  return state;
-};
 
 const getStore = () => {
   return createStore(reducer, composeEnhancers(
