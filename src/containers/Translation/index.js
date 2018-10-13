@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { getTranslationList } from './store/actions';
 
 class Translation extends Component {
@@ -17,11 +18,11 @@ class Translation extends Component {
   }
 
   render() {
-    return (
+    return this.props.login ? (
       <div>
         { this.getList() }
       </div>
-    );
+    ) : <Redirect to='/' />
   }
 }
 
@@ -30,7 +31,8 @@ Translation.loadData = (store) => {
 };
 
 const mapStateToProps = (state) => ({
-  list: state.translation.translationList
+  list: state.translation.translationList,
+  login: state.header.login
 });
 
 const mapDispatchToProps = dispatch => ({
