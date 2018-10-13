@@ -6,7 +6,9 @@ import { getHomeList } from './store/actions';
 
 class Home extends Component {
   componentDidMount() {
-    this.props.getHomeList();
+    if (!this.props.list.length) {
+      this.props.getHomeList();
+    }
   }
 
   getList() {
@@ -27,6 +29,10 @@ class Home extends Component {
       </div>
     );
   }
+}
+
+Home.loadData = (store)  => {
+  return store.dispatch(getHomeList());
 }
 
 const mapStateToProps = state => ({
