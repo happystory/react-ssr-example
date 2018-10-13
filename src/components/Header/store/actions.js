@@ -1,5 +1,5 @@
-import request from '../../../utils/request';
 import { CHANGE_LOGIN } from './constants';
+import { isLoginApi, loginApi, logoutApi } from '../../../api';
 
 const changeLogin = (value) => ({
   type: CHANGE_LOGIN,
@@ -8,7 +8,7 @@ const changeLogin = (value) => ({
 
 export const login = () => {
   return (dispatch) => {
-    return request.get('/api/login.json?secret=M5s2sPneDE')
+    return loginApi()
       .then((res) => {
         dispatch(changeLogin(true));
       });
@@ -17,7 +17,7 @@ export const login = () => {
 
 export const logout = () => {
   return (dispatch) => {
-    return request.get('/api/logout.json?secret=M5s2sPneDE')
+    return logoutApi()
       .then((res) => {
         dispatch(changeLogin(false));
       });
@@ -27,7 +27,7 @@ export const logout = () => {
 
 export const getHeaderInfo = () => {
   return (dispatch) => {
-    return request.get('/api/isLogin.json?secret=M5s2sPneDE')
+    return isLoginApi()
       .then((res) => {
         dispatch(changeLogin(res.data.data.login));
       });

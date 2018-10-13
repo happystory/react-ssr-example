@@ -1,6 +1,5 @@
-import request from '../../../utils/request';
 import { CHANGE_LIST } from './constants';
-
+import { getTranslationListApi } from '../../../api';
 
 const changeTranslationList = (list) => ({
   type: CHANGE_LIST,
@@ -9,7 +8,7 @@ const changeTranslationList = (list) => ({
 
 export const getTranslationList = () => {
   return (dispatch) => {
-    return request.get('/api/translations.json?secret=M5s2sPneDE')
+    return getTranslationListApi()
       .then((res) => {
         const list = res.data.success ? res.data.data : [];
         dispatch(changeTranslationList(list));
