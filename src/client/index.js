@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { renderRoutes } from 'react-router-config';
 import routes from '../routes';
 import { getClientStore } from '../store';
 
@@ -11,11 +12,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Switch>
-          {routes.map(route => (
-            <Route {...route} />
-          ))}
-        </Switch>
+        { renderRoutes(routes) }
       </BrowserRouter>
     </Provider>
   );
