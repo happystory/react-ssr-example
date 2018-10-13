@@ -1,11 +1,12 @@
 import App from './App';
 import Home from './containers/Home';
-import Login from './containers/Login';
+import Translation from './containers/Translation';
 
 export default [
   {
     path: '/',
     component: App,
+    loadData: App.loadData,
     routes: [
       {
         path: '/',
@@ -14,9 +15,10 @@ export default [
         loadData: Home.loadData,
         key: 'home'
       }, {
-        path: '/login',
-        component: Login,
-        key: 'login'
+        path: '/translation',
+        component: Translation,
+        loadData: Translation.loadData,
+        key: 'translation'
       }
     ]
   }

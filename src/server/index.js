@@ -16,6 +16,9 @@ app.use('/api', proxy({
 }))
 
 app.get('*', (req, res) => {
+  // 设置server环境变量
+  process.env.COOKIE = req.get('cookie');
+
   const store = getStore();
 
   const matchedRoutes = matchRoutes(routes, req.path);
