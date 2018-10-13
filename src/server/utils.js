@@ -13,6 +13,9 @@ export const render = (req, store, routes, context) => {
     </Provider>
   ));
 
+  const cssStr = context.css || '';
+  console.log(cssStr);
+
   const livereloadTpl = `<script>
     document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
     ':35728/livereload.js?snipver=1"></' + 'script>')
@@ -22,6 +25,7 @@ export const render = (req, store, routes, context) => {
       <html>
         <head>
           <title>react ssr</title>
+          <style>${cssStr}</style>
         </head>
         <body>
           <div id="root">${content}</div>
