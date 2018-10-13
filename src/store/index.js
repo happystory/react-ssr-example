@@ -1,9 +1,13 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { reducer as homeReducer } from '../containers/Home/store';
+import { reducer as headerReducer } from '../components/Header/store';
+import { reducer as translationReducer } from '../containers/Translation/store';
 
 const reducer = combineReducers({
-  home: homeReducer
+  home: homeReducer,
+  header: headerReducer,
+  translation: translationReducer
 });
 
 const composeEnhancers = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

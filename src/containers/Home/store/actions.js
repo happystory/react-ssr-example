@@ -7,7 +7,7 @@ const changeList = (list) => ({
   list
 })
 
-export const getHomeList = (server) => {
+export const getHomeList = () => {
   return (dispatch) => {
     return request.get('/api/news.json?secret=M5s2sPneDE')
       .then((res) => {
