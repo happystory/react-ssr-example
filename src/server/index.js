@@ -34,6 +34,10 @@ app.get('*', (req, res) => {
     const context = {};
     const html = render(req, store, routes, context);
 
+    if (context.action === 'REPLACE') {
+      return res.redirect(302, context.url);
+    }
+
     if (context.NOT_FOUND) {
       res.status(404);
       res.send(html);
