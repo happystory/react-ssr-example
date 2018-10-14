@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { getTranslationList } from './store/actions';
+import styles from './style.css';
+import withStyle from '../../withStyle';
 
 class Translation extends Component {
   componentDidMount() {
@@ -19,16 +21,12 @@ class Translation extends Component {
 
   render() {
     return this.props.login ? (
-      <div>
+      <div className={styles.test}>
         { this.getList() }
       </div>
     ) : <Redirect to='/' />
   }
 }
-
-Translation.loadData = (store) => {
-  return store.dispatch(getTranslationList());
-};
 
 const mapStateToProps = (state) => ({
   list: state.translation.translationList,
@@ -41,4 +39,9 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Translation);
+const ExportTransition = connect(mapStateToProps, mapDispatchToProps)(withStyle(Translation, styles));
+ExportTransition.loadData = (store) => {
+  return store.dispatch(getTranslationList());
+};
+
+export default ExportTransition;

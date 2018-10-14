@@ -1,32 +1,25 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actions } from './store';
 import styles from './style.css';
+import withStyle from '../../withStyle';
 
 class Header extends Component {
-  componentWillMount() {
-    if (this.props.staticContext) {
-      this.props.staticContext.css.push(styles._getCss());
-    }
-  }
-
   render() {
     const { login } = this.props;
     return (
-      <div className={styles.test}>
-        <Link to="/">首页</Link>
-        <br />
+      <div className={styles.container}>
+        <NavLink exact to="/" className={styles.item} activeClassName={styles.active}>首页</NavLink>
         {
           login
           ?
           <Fragment>
-            <Link to="/translation">翻译列表</Link>
-            <br />
-            <div onClick={this.props.handleLogout}>退出</div>
+            <NavLink to="/translation" className={styles.item} activeClassName={styles.active}>翻译列表</NavLink>
+            <div onClick={this.props.handleLogout} className={`${styles.item} ${styles.login}`}>退出</div>
           </Fragment>
           :
-          <div onClick={this.props.handleLogin}>登录</div>
+          <div onClick={this.props.handleLogin} className={`${styles.item} ${styles.login}`}>登录</div>
         }
       </div>
     );
@@ -46,4 +39,6 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+const ExportHeader = connect(mapStateToProps, mapDispatchToProps)(withStyle(Header, styles));
+
+export default ExportHeader;

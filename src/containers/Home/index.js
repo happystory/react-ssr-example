@@ -3,14 +3,9 @@ import { connect } from 'react-redux';
 
 import { getHomeList } from './store/actions';
 import styles from './style.css';
+import withStyle from '../../withStyle';
 
 class Home extends Component {
-  componentWillMount() {
-    if (this.props.staticContext) {
-      this.props.staticContext.css.push(styles._getCss());
-    }
-  }
-
   componentDidMount() {
     if (!this.props.list.length) {
       this.props.getHomeList();
@@ -36,10 +31,6 @@ class Home extends Component {
   }
 }
 
-Home.loadData = (store)  => {
-  return store.dispatch(getHomeList());
-}
-
 const mapStateToProps = state => ({
   list: state.home.newsList
 });
@@ -50,4 +41,9 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+const ExportHome = connect(mapStateToProps, mapDispatchToProps)(withStyle(Home, styles));
+ExportHome.loadData = (store)  => {
+  return store.dispatch(getHomeList());
+}
+
+export default ExportHome;
