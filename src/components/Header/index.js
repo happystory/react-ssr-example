@@ -2,19 +2,19 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actions } from './store';
-// import styles from './style.css';
+import styles from './style.css';
 
 class Header extends Component {
-  // componentWillMount() {
-  //   if (this.props.staticContext) {
-  //     this.props.staticContext.css = styles._getCss();
-  //   }
-  // }
+  componentWillMount() {
+    if (this.props.staticContext) {
+      this.props.staticContext.css.push(styles._getCss());
+    }
+  }
 
   render() {
     const { login } = this.props;
     return (
-      <div>
+      <div className={styles.test}>
         <Link to="/">首页</Link>
         <br />
         {

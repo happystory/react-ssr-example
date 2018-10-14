@@ -13,8 +13,8 @@ export const render = (req, store, routes, context) => {
     </Provider>
   ));
 
-  const cssStr = context.css || '';
-  console.log(cssStr);
+  const cssStr = context.css.length ?  context.css.join('\n') : '';
+  // console.log(cssStr);
 
   const livereloadTpl = `<script>
     document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
